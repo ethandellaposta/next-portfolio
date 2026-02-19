@@ -109,7 +109,7 @@ export default function Home() {
       <section ref={careerRef} className="careerRegion" id="career" aria-label="Career history">
         <div className="careerHeader">
           <SectionHeader
-            number="02"
+            number="01"
             title="Career"
             description="Scroll to explore my roles and the projects I shipped at each"
           />

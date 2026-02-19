@@ -55,7 +55,7 @@ function ProjectsSection({ onLaunch }, ref) {
   return (
     <section ref={ref} className="region" data-reveal id="projects">
       <SectionHeader
-        number="01"
+        number="02"
         title="Simulation Projects"
         description="Real-world models brought to life with a bit of fiction"
       />

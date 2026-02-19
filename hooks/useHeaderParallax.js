@@ -5,8 +5,8 @@ export default function useHeaderParallax() {
   const currentY = useRef({})
 
   useEffect(() => {
-    const LERP = 0.05
-    const SPEED = 0.8
+    const LERP = 0.06
+    const SPEED = 0.35
 
     function tick() {
       const headers = document.querySelectorAll('.sectionHeaderSticky')
