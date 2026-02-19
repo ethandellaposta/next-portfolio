@@ -343,6 +343,9 @@ export default function Home() {
           pointer-events: none;
           opacity: var(--bg-layer-opacity);
           transition: opacity 0.4s ease;
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          contain: strict;
         }
 
         .ambientLights {
@@ -350,6 +353,7 @@ export default function Home() {
           inset: 0;
           width: 100%;
           height: 100%;
+          transform: translateZ(0);
         }
 
         .aLight {
@@ -363,7 +367,6 @@ export default function Home() {
           filter: blur(var(--ablur));
           opacity: var(--aopacity);
           transform: translate(-50%, -50%);
-          will-change: transform;
           animation: aLightBreathe 8s ease-in-out infinite alternate;
         }
 
@@ -647,6 +650,7 @@ export default function Home() {
           inset: 0;
           width: 100%;
           height: 100%;
+          transform: translateZ(0);
         }
 
         .fp-blob {
@@ -662,7 +666,6 @@ export default function Home() {
           transform: translate(-50%, -50%);
           animation: fpDrift var(--bdur) ease-in-out infinite alternate;
           animation-delay: var(--bdelay);
-          will-change: transform;
         }
 
         @keyframes fpDrift {
