@@ -1,0 +1,5 @@
+# robots.txt for ethandellaposta.dev
+User-agent: *
+Allow: /
+
+Sitemap: https://ethandellaposta.dev/sitemap.xml

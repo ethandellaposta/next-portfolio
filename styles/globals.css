@@ -1,10 +1,74 @@
+/* ═══════════════════════════════════
+   Theme variables
+═══════════════════════════════════ */
+:root {
+  --bg: #0f1117;
+  --bg-body: #070c16;
+  --surface: #16191f;
+  --surface-raised: #1c2028;
+  --border: rgba(255, 255, 255, 0.06);
+  --text-primary: #f0f2f8;
+  --text-secondary: #9ba3b8;
+  --text-tertiary: #6b7280;
+  --accent: hsl(230, 80%, 68%);
+  --code-bg: rgba(30, 44, 72, 0.6);
+  --code-color: #c5d4ee;
+  --card-glow: rgba(255, 255, 255, 0.03);
+  --card-border: rgba(255, 255, 255, 0.06);
+  --card-hover-border: rgba(255, 255, 255, 0.12);
+  --spot-opacity: 0.45;
+  --bg-layer-opacity: 1;
+  --shadow-color: 230 40% 10%;
+  --glow-evo: hsl(210, 80%, 50%, 0.12);
+  --glow-solar: hsl(32, 80%, 50%, 0.12);
+  --glow-music: hsl(20, 80%, 50%, 0.12);
+  --music-glow-rgb: 107, 138, 253;
+  --music-glow2-rgb: 180, 130, 255;
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg: #eef0f5;
+  --bg-body: #e4e7ee;
+  --surface: #ffffff;
+  --surface-raised: #f8f9fb;
+  --border: rgba(0, 0, 0, 0.12);
+  --text-primary: #1a1d26;
+  --text-secondary: #3d4560;
+  --text-tertiary: #5c6478;
+  --accent: hsl(230, 70%, 50%);
+  --code-bg: rgba(200, 210, 230, 0.4);
+  --code-color: #2d3748;
+  --card-glow: rgba(0, 0, 0, 0.03);
+  --card-border: rgba(0, 0, 0, 0.1);
+  --card-hover-border: rgba(0, 0, 0, 0.2);
+  --spot-opacity: 0.25;
+  --bg-layer-opacity: 0.15;
+  --shadow-color: 230 25% 60%;
+  --glow-evo: hsl(210, 70%, 55%, 0.1);
+  --glow-solar: hsl(32, 70%, 50%, 0.1);
+  --glow-music: hsl(20, 70%, 50%, 0.1);
+  --music-glow-rgb: 80, 100, 200;
+  --music-glow2-rgb: 140, 100, 200;
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
-  background-color: #f8fafc;
+  background-color: var(--bg-body);
+  color: var(--text-primary);
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 * {
@@ -12,25 +76,32 @@ body {
 }
 
 main {
-  padding: 5rem 0;
+  padding: 0;
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 code {
-  background: #e2e8f0;
+  background: var(--code-bg);
   border-radius: 5px;
   padding: 0.75rem;
   font-family: Menlo, Monaco, Lucida Console, Courier New, monospace;
+  color: var(--code-color);
 }
 
 .container {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
