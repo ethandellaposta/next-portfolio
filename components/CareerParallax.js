@@ -1427,7 +1427,7 @@ export default function CareerParallax() {
           align-items: center;
           gap: 0.5rem;
           font-size: 0.7rem;
-          color: var(--text-tertiary, #6b7280);
+          color: var(--text-secondary, #9ba3b8);
           transition: opacity 600ms ease;
         }
 

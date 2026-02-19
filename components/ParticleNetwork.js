@@ -21,8 +21,9 @@ export default function ParticleNetwork() {
     let prevScrollY = 0
     let scrollVel = 0
 
-    const PARTICLE_COUNT = 80
-    const CONNECTION_DIST = 180
+    const isMobile = window.innerWidth < 640
+    const PARTICLE_COUNT = isMobile ? 30 : 80
+    const CONNECTION_DIST = isMobile ? 120 : 180
     const BASE_SPEED = 0.3
 
     // Shape types with rarity weights (higher = more common)
@@ -312,8 +313,8 @@ export default function ParticleNetwork() {
           ctx.fill()
         }
 
-        // Glow for non-circle shapes or larger particles
-        if (p.r > 2 || p.shape !== 'circle') {
+        // Glow for non-circle shapes or larger particles (skip on mobile for perf)
+        if (!isMobile && (p.r > 2 || p.shape !== 'circle')) {
           const glowR = p.shape !== 'circle' ? p.r * 4 : p.r * 3
           const glowSat = isDark ? 70 : 50
           const glowL = isDark ? 70 : 50

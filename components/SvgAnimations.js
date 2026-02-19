@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
 /**
  * Rich SVG animations using browser-native SVG features:
@@ -757,6 +757,11 @@ export function WaveDivider() {
 
 // Living background — floating blobs, pulsing orbs, blinking lights, all blurred
 export function FloatingParticles() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 640)
+  }, [])
+
   // Floating blurred blobs that drift slowly
   const blobs = [
     {
@@ -903,10 +908,14 @@ export function FloatingParticles() {
     }
   })
 
+  const visibleBlobs = isMobile ? blobs.slice(0, 3) : blobs
+  const visiblePulses = isMobile ? pulses.slice(0, 4) : pulses
+  const visibleBlinks = isMobile ? blinks.slice(0, 10) : blinks
+
   return (
     <div className="fp-alive" aria-hidden="true">
       {/* Floating blurred blobs */}
-      {blobs.map((b, i) => (
+      {visibleBlobs.map((b, i) => (
         <span
           key={`blob-${i}`}
           className="fp-blob"
@@ -926,7 +935,7 @@ export function FloatingParticles() {
       ))}
 
       {/* Pulsing orbs */}
-      {pulses.map((p, i) => (
+      {visiblePulses.map((p, i) => (
         <span
           key={`pulse-${i}`}
           className="fp-pulse"
@@ -943,7 +952,7 @@ export function FloatingParticles() {
       ))}
 
       {/* Blinking dim lights */}
-      {blinks.map((b, i) => (
+      {visibleBlinks.map((b, i) => (
         <span
           key={`blink-${i}`}
           className="fp-blink"
