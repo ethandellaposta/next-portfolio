@@ -1,0 +1,152 @@
+/* ═══════════════════════════════════
+   Design Tokens - Ethan Portfolio
+═══════════════════════════════════ */
+
+:root {
+  /* ── Spacing Scale (4px base) ── */
+  --space-xs: 0.25rem; /* 4px  */
+  --space-sm: 0.5rem; /* 8px  */
+  --space-md: 0.75rem; /* 12px */
+  --space-lg: 1rem; /* 16px */
+  --space-xl: 1.5rem; /* 24px */
+  --space-2xl: 2rem; /* 32px */
+  --space-3xl: 3rem; /* 48px */
+  --space-4xl: 4rem; /* 64px */
+  --space-5xl: 6rem; /* 96px */
+  --space-6xl: 8rem; /* 128px */
+
+  /* ── Typography Scale ── */
+  --font-display: 'Outfit', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-base: 1rem; /* 16px */
+  --text-lg: 1.125rem; /* 18px */
+  --text-xl: 1.25rem; /* 20px */
+  --text-2xl: 1.5rem; /* 24px */
+  --text-3xl: 1.875rem; /* 30px */
+  --text-4xl: 2.25rem; /* 36px */
+  --text-5xl: 3rem; /* 48px */
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* ── Colors - Dark Theme ── */
+  --color-bg-primary: #0f1117;
+  --color-bg-secondary: #070c16;
+  --color-surface: #16191f;
+  --color-surface-raised: #1c2028;
+  --color-surface-hover: #232933;
+
+  --color-text-primary: #f0f2f8;
+  --color-text-secondary: #9ba3b8;
+  --color-text-tertiary: #6b7280;
+  --color-text-muted: #4b5563;
+
+  --color-accent-primary: hsl(230, 80%, 68%);
+  --color-accent-secondary: hsl(210, 80%, 60%);
+  --color-accent-tertiary: hsl(260, 70%, 65%);
+
+  --color-border: rgba(255, 255, 255, 0.06);
+  --color-border-hover: rgba(255, 255, 255, 0.12);
+  --color-border-active: rgba(255, 255, 255, 0.18);
+
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+
+  /* ── Colors - Light Theme ── */
+  [data-theme='light'] {
+    --color-bg-primary: #eef0f5;
+    --color-bg-secondary: #e4e7ee;
+    --color-surface: #ffffff;
+    --color-surface-raised: #f8f9fb;
+    --color-surface-hover: #f0f2f5;
+
+    --color-text-primary: #1a1d26;
+    --color-text-secondary: #3d4560;
+    --color-text-tertiary: #5c6478;
+    --color-text-muted: #6b7280;
+
+    --color-accent-primary: hsl(230, 70%, 50%);
+    --color-accent-secondary: hsl(210, 70%, 45%);
+    --color-accent-tertiary: hsl(260, 65%, 55%);
+
+    --color-border: rgba(0, 0, 0, 0.12);
+    --color-border-hover: rgba(0, 0, 0, 0.2);
+    --color-border-active: rgba(0, 0, 0, 0.3);
+  }
+
+  /* ── Border Radius ── */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-lg: 0.75rem; /* 12px */
+  --radius-xl: 1rem; /* 16px */
+  --radius-2xl: 1.5rem; /* 24px */
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+
+  /* ── Motion & Animation ── */
+  --motion-duration-fast: 150ms;
+  --motion-duration-normal: 250ms;
+  --motion-duration-slow: 350ms;
+  --motion-duration-slower: 500ms;
+
+  --motion-ease-linear: linear;
+  --motion-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --motion-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --motion-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --motion-ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* ── Z-Index Scale ── */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
+
+  /* ── Component Specific ── */
+  --container-max-width: 1120px;
+  --container-padding: var(--space-2xl);
+
+  --card-glow: rgba(255, 255, 255, 0.03);
+  --card-hover-glow: rgba(255, 255, 255, 0.06);
+
+  --code-bg: rgba(30, 44, 72, 0.6);
+  --code-color: #c5d4ee;
+
+  --spot-opacity: 0.45;
+  --bg-layer-opacity: 1;
+  --shadow-color: 230 40% 10%;
+
+  /* Project-specific glows */
+  --glow-evo: hsl(210, 80%, 50%, 0.12);
+  --glow-solar: hsl(32, 80%, 50%, 0.12);
+  --glow-radar: hsl(120, 60%, 50%, 0.12);
+  --glow-max: hsl(280, 70%, 50%, 0.12);
+  --glow-music: hsl(20, 80%, 50%, 0.12);
+
+  --music-glow-rgb: 107, 138, 253;
+  --music-glow2-rgb: 180, 130, 255;
+}

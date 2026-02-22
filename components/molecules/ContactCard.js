@@ -1,10 +1,10 @@
-import { memo } from 'react'
-import Icon from '@components/atoms/Icon'
+import { memo } from 'react';
+import Icon from '@components/atoms/Icon';
 
 function ContactCard({ href, label, value, icon, external }) {
   const linkProps = external
     ? { target: '_blank', rel: 'noopener noreferrer' }
-    : {}
+    : {};
 
   return (
     <a className="contactCard" href={href} {...linkProps}>
@@ -14,7 +14,7 @@ function ContactCard({ href, label, value, icon, external }) {
       <span className="contactLabel">{label}</span>
       <span className="contactValue">{value}</span>
     </a>
-  )
+  );
 }
 
-export default memo(ContactCard)
+export default memo(ContactCard);

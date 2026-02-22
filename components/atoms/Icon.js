@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo } from 'react';
 
 const ICONS = {
   sun: (
@@ -46,11 +46,27 @@ const ICONS = {
   play: <polygon points="6,3 20,12 6,21" fill="currentColor" stroke="none" />,
   pause: (
     <>
-      <rect x="6" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none" />
-      <rect x="14" y="4" width="4" height="16" rx="1" fill="currentColor" stroke="none" />
+      <rect
+        x="6"
+        y="4"
+        width="4"
+        height="16"
+        rx="1"
+        fill="currentColor"
+        stroke="none"
+      />
+      <rect
+        x="14"
+        y="4"
+        width="4"
+        height="16"
+        rx="1"
+        fill="currentColor"
+        stroke="none"
+      />
     </>
-  )
-}
+  ),
+};
 
 function Icon({ name, size = 24, strokeWidth = 1.5, className = '' }) {
   return (
@@ -67,7 +83,7 @@ function Icon({ name, size = 24, strokeWidth = 1.5, className = '' }) {
     >
       {ICONS[name]}
     </svg>
-  )
+  );
 }
 
-export default memo(Icon)
+export default memo(Icon);

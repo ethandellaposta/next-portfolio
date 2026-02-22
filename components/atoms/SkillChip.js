@@ -1,10 +1,18 @@
-import { memo } from 'react'
+import { memo } from 'react';
 
 const SKILL_ICONS = {
   react: (
     <svg viewBox="0 0 24 24" className="skillIcon">
       <circle cx="12" cy="12" r="2.2" fill="currentColor" />
-      <ellipse cx="12" cy="12" rx="10" ry="4" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <ellipse
+        cx="12"
+        cy="12"
+        rx="10"
+        ry="4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
       <ellipse
         cx="12"
         cy="12"
@@ -29,7 +37,14 @@ const SKILL_ICONS = {
   ),
   nextjs: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <circle
+        cx="12"
+        cy="12"
+        r="10"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
       <path
         d="M8 8v8m0-8l8.5 11M16 8v8"
         stroke="currentColor"
@@ -41,8 +56,22 @@ const SKILL_ICONS = {
   ),
   typescript: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <path d="M8 10h6M11 10v7" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <rect
+        x="3"
+        y="3"
+        width="18"
+        height="18"
+        rx="3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <path
+        d="M8 10h6M11 10v7"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
       <path
         d="M17 10.5a1.5 1.5 0 0 0-1.5-1.5h-1a1.5 1.5 0 0 0 0 3h1a1.5 1.5 0 0 1 0 3h-1a1.5 1.5 0 0 1-1.5-1.5"
         stroke="currentColor"
@@ -61,7 +90,12 @@ const SKILL_ICONS = {
         strokeWidth="1.2"
         strokeLinejoin="round"
       />
-      <path d="M12 7v10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+      <path
+        d="M12 7v10"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
       <path
         d="M8 9.5l4 2.5 4-2.5"
         stroke="currentColor"
@@ -73,7 +107,14 @@ const SKILL_ICONS = {
   ),
   cpp: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <circle cx="11" cy="12" r="8" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <circle
+        cx="11"
+        cy="12"
+        r="8"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
       <path
         d="M8 9a4 4 0 1 0 0 6"
         stroke="currentColor"
@@ -81,8 +122,18 @@ const SKILL_ICONS = {
         strokeLinecap="round"
         fill="none"
       />
-      <path d="M17 10v4M15 12h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-      <path d="M21 10v4M19 12h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+      <path
+        d="M17 10v4M15 12h4"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M21 10v4M19 12h4"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
     </svg>
   ),
   go: (
@@ -95,7 +146,13 @@ const SKILL_ICONS = {
       />
       <circle cx="9" cy="10.5" r="1" fill="currentColor" />
       <circle cx="15" cy="10.5" r="1" fill="currentColor" />
-      <path d="M9.5 14c1 1 4 1 5 0" stroke="currentColor" strokeWidth="1" strokeLinecap="round" fill="none" />
+      <path
+        d="M9.5 14c1 1 4 1 5 0"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+        fill="none"
+      />
     </svg>
   ),
   graphql: (
@@ -117,9 +174,27 @@ const SKILL_ICONS = {
   ),
   mysql: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <ellipse cx="12" cy="6" rx="8" ry="3" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <path d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <ellipse
+        cx="12"
+        cy="6"
+        rx="8"
+        ry="3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <path
+        d="M4 6v12c0 1.66 3.58 3 8 3s8-1.34 8-3V6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <path
+        d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
     </svg>
   ),
   aws: (
@@ -132,7 +207,12 @@ const SKILL_ICONS = {
         strokeLinejoin="round"
         fill="none"
       />
-      <path d="M7.5 12h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+      <path
+        d="M7.5 12h4"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
       <path
         d="M15 6l2 6 2-6"
         stroke="currentColor"
@@ -152,11 +232,53 @@ const SKILL_ICONS = {
   ),
   docker: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <rect x="3" y="10" width="18" height="9" rx="2" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <rect x="5" y="12" width="3" height="2.5" rx="0.5" fill="currentColor" opacity="0.5" />
-      <rect x="9.5" y="12" width="3" height="2.5" rx="0.5" fill="currentColor" opacity="0.5" />
-      <rect x="14" y="12" width="3" height="2.5" rx="0.5" fill="currentColor" opacity="0.5" />
-      <rect x="9.5" y="7" width="3" height="2.5" rx="0.5" fill="none" stroke="currentColor" strokeWidth="1" />
+      <rect
+        x="3"
+        y="10"
+        width="18"
+        height="9"
+        rx="2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <rect
+        x="5"
+        y="12"
+        width="3"
+        height="2.5"
+        rx="0.5"
+        fill="currentColor"
+        opacity="0.5"
+      />
+      <rect
+        x="9.5"
+        y="12"
+        width="3"
+        height="2.5"
+        rx="0.5"
+        fill="currentColor"
+        opacity="0.5"
+      />
+      <rect
+        x="14"
+        y="12"
+        width="3"
+        height="2.5"
+        rx="0.5"
+        fill="currentColor"
+        opacity="0.5"
+      />
+      <rect
+        x="9.5"
+        y="7"
+        width="3"
+        height="2.5"
+        rx="0.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+      />
       <path
         d="M1 13c1-1 2-1.5 3-1.5"
         stroke="currentColor"
@@ -168,10 +290,40 @@ const SKILL_ICONS = {
   ),
   kubernetes: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" strokeWidth="1" />
-      <line x1="12" y1="3" x2="12" y2="9" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
-      <line x1="12" y1="15" x2="12" y2="21" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+      <circle
+        cx="12"
+        cy="12"
+        r="9"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <circle
+        cx="12"
+        cy="12"
+        r="3"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+      />
+      <line
+        x1="12"
+        y1="3"
+        x2="12"
+        y2="9"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+      />
+      <line
+        x1="12"
+        y1="15"
+        x2="12"
+        y2="21"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeLinecap="round"
+      />
       <line
         x1="3.5"
         y1="7.5"
@@ -212,7 +364,15 @@ const SKILL_ICONS = {
   ),
   linux: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <ellipse cx="12" cy="8" rx="4" ry="5" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <ellipse
+        cx="12"
+        cy="8"
+        rx="4"
+        ry="5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
       <circle cx="10.5" cy="7" r="0.8" fill="currentColor" />
       <circle cx="13.5" cy="7" r="0.8" fill="currentColor" />
       <path
@@ -240,11 +400,40 @@ const SKILL_ICONS = {
   ),
   radar: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.5" />
+      <circle
+        cx="12"
+        cy="12"
+        r="9"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <circle
+        cx="12"
+        cy="12"
+        r="5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        opacity="0.5"
+      />
       <circle cx="12" cy="12" r="1.5" fill="currentColor" />
-      <line x1="12" y1="12" x2="18" y2="6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-      <path d="M12 12l2-8" stroke="currentColor" strokeWidth="0.8" opacity="0.4" strokeLinecap="round" />
+      <line
+        x1="12"
+        y1="12"
+        x2="18"
+        y2="6"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 12l2-8"
+        stroke="currentColor"
+        strokeWidth="0.8"
+        opacity="0.4"
+        strokeLinecap="round"
+      />
     </svg>
   ),
   webgl: (
@@ -269,7 +458,12 @@ const SKILL_ICONS = {
   ),
   feathers: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <path d="M20 4L4 20" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+      <path
+        d="M20 4L4 20"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
       <path
         d="M18 8c-3-1-6 0-8 2l6-1z"
         fill="currentColor"
@@ -288,27 +482,108 @@ const SKILL_ICONS = {
   ),
   grpc: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <circle cx="6" cy="6" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <circle cx="18" cy="6" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <circle cx="6" cy="18" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <circle cx="18" cy="18" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <line x1="8.5" y1="6" x2="15.5" y2="6" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
-      <line x1="6" y1="8.5" x2="6" y2="15.5" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
-      <line x1="18" y1="8.5" x2="18" y2="15.5" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
-      <line x1="8.5" y1="18" x2="15.5" y2="18" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
+      <circle
+        cx="6"
+        cy="6"
+        r="2.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <circle
+        cx="18"
+        cy="6"
+        r="2.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <circle
+        cx="6"
+        cy="18"
+        r="2.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <circle
+        cx="18"
+        cy="18"
+        r="2.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <line
+        x1="8.5"
+        y1="6"
+        x2="15.5"
+        y2="6"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeDasharray="2 2"
+      />
+      <line
+        x1="6"
+        y1="8.5"
+        x2="6"
+        y2="15.5"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeDasharray="2 2"
+      />
+      <line
+        x1="18"
+        y1="8.5"
+        x2="18"
+        y2="15.5"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeDasharray="2 2"
+      />
+      <line
+        x1="8.5"
+        y1="18"
+        x2="15.5"
+        y2="18"
+        stroke="currentColor"
+        strokeWidth="1"
+        strokeDasharray="2 2"
+      />
     </svg>
   ),
   protobuf: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="currentColor" strokeWidth="1.2" />
-      <path d="M8 8h8M8 12h6M8 16h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <rect
+        x="4"
+        y="4"
+        width="16"
+        height="16"
+        rx="2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
+      <path
+        d="M8 8h8M8 12h6M8 16h4"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
       <circle cx="18" cy="8" r="1" fill="currentColor" opacity="0.5" />
       <circle cx="16" cy="12" r="1" fill="currentColor" opacity="0.5" />
     </svg>
   ),
   jenkins: (
     <svg viewBox="0 0 24 24" className="skillIcon">
-      <circle cx="12" cy="10" r="7" fill="none" stroke="currentColor" strokeWidth="1.2" />
+      <circle
+        cx="12"
+        cy="10"
+        r="7"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.2"
+      />
       <circle cx="10" cy="9" r="1" fill="currentColor" />
       <circle cx="14" cy="9" r="1" fill="currentColor" />
       <path
@@ -318,7 +593,12 @@ const SKILL_ICONS = {
         strokeLinecap="round"
         fill="none"
       />
-      <path d="M12 17v3M9 21h6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+      <path
+        d="M12 17v3M9 21h6"
+        stroke="currentColor"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
       <path
         d="M7 4c-1-1.5 0-3 2-3M17 4c1-1.5 0-3-2-3"
         stroke="currentColor"
@@ -327,8 +607,8 @@ const SKILL_ICONS = {
         fill="none"
       />
     </svg>
-  )
-}
+  ),
+};
 
 function SkillChip({ label, icon, index }) {
   return (
@@ -336,7 +616,7 @@ function SkillChip({ label, icon, index }) {
       {SKILL_ICONS[icon] && SKILL_ICONS[icon]}
       <span className="skillLabel">{label}</span>
     </span>
-  )
+  );
 }
 
-export default memo(SkillChip)
+export default memo(SkillChip);

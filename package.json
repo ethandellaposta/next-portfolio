@@ -1,18 +1,61 @@
 {
-  "name": "next-netlify-starter",
-  "version": "0.5.0",
+  "name": "ethan-portfolio",
+  "version": "1.0.0",
+  "description": "Senior Software Engineer portfolio - Full-stack development, radar systems, and real-time simulations",
   "private": true,
+  "author": "Ethan Della Posta <ethanjdellaposta@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ethandellaposta/next-portfolio"
+  },
+  "keywords": [
+    "portfolio",
+    "software-engineer",
+    "radar",
+    "simulations",
+    "nextjs",
+    "react"
+  ],
+  "license": "MIT",
   "scripts": {
-    "dev": "next dev -p 3027",
+    "dev": "next dev",
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test:a11y": "node scripts/test-a11y.js",
+    "test:performance": "node scripts/monitor-performance.js",
+    "test:lighthouse": "lhci autorun",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged",
+    "analyze": "ANALYZE=true next build",
+    "quality": "npm run lint && npm run format:check && npm run type-check"
   },
   "dependencies": {
     "next": "^16.0.7",
     "next-sitemap": "^4.2.3",
+    "puppeteer": "^24.37.5",
     "react": "^19.2.1",
     "react-dom": "^19.2.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.3",
+    "@lhci/cli": "^0.12.0",
+    "@next/bundle-analyzer": "^16.1.6",
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "axe-core": "^4.11.1",
+    "eslint-config-next": "^15.0.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.2.0"
   }
 }

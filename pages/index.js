@@ -109,7 +109,7 @@ export default function Home() {
       <section ref={careerRef} className="careerRegion" id="career" aria-label="Career history">
         <div className="careerHeader">
           <SectionHeader
-            number="01"
+            number="02"
             title="Career"
             description="Scroll to explore my roles and the projects I shipped at each"
           />
@@ -343,9 +343,6 @@ export default function Home() {
           pointer-events: none;
           opacity: var(--bg-layer-opacity);
           transition: opacity 0.4s ease;
-          transform: translateZ(0);
-          backface-visibility: hidden;
-          contain: strict;
         }
 
         .ambientLights {
@@ -353,7 +350,6 @@ export default function Home() {
           inset: 0;
           width: 100%;
           height: 100%;
-          transform: translateZ(0);
         }
 
         .aLight {
@@ -367,6 +363,7 @@ export default function Home() {
           filter: blur(var(--ablur));
           opacity: var(--aopacity);
           transform: translate(-50%, -50%);
+          will-change: transform;
           animation: aLightBreathe 8s ease-in-out infinite alternate;
         }
 
@@ -650,7 +647,6 @@ export default function Home() {
           inset: 0;
           width: 100%;
           height: 100%;
-          transform: translateZ(0);
         }
 
         .fp-blob {
@@ -666,6 +662,7 @@ export default function Home() {
           transform: translate(-50%, -50%);
           animation: fpDrift var(--bdur) ease-in-out infinite alternate;
           animation-delay: var(--bdelay);
+          will-change: transform;
         }
 
         @keyframes fpDrift {
@@ -772,6 +769,7 @@ export default function Home() {
           font-weight: 700;
           letter-spacing: 0.08em;
           color: var(--accent);
+          opacity: 0.6;
           margin-bottom: var(--space-sm);
         }
 
@@ -1275,8 +1273,6 @@ export default function Home() {
           align-items: center;
           gap: var(--space-sm);
           padding: var(--space-xl) var(--space-lg);
-          width: 100%;
-          box-sizing: border-box;
           text-decoration: none;
           color: var(--text-primary);
           background: color-mix(in srgb, var(--surface) 92%, transparent);
@@ -1329,7 +1325,7 @@ export default function Home() {
 
         .contactValue {
           font-size: 0.78rem;
-          color: var(--text-primary);
+          color: var(--text-secondary);
           line-height: 1.4;
         }
 
@@ -1370,7 +1366,7 @@ export default function Home() {
           font-family: var(--font-body);
           font-size: 0.8rem;
           font-weight: 500;
-          color: var(--text-secondary);
+          color: var(--text-tertiary);
           text-decoration: none;
           transition: color 0.2s ease;
         }
@@ -1382,8 +1378,8 @@ export default function Home() {
         .footerCopy {
           margin: 0;
           font-size: 0.72rem;
-          color: var(--text-secondary);
-          opacity: 0.8;
+          color: var(--text-tertiary);
+          opacity: 0.6;
         }
 
         /* ═══════════════════════════════════

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback, memo } from 'react'
+import { useEffect, useRef, useState, useCallback, memo } from 'react';
 const JOBS = [
   {
     id: 'src2',
@@ -16,9 +16,9 @@ const JOBS = [
         tags: ['C++', 'Slurm', 'Linux'],
         stats: [
           { label: 'Dwell latency', value: '<5ms' },
-          { label: 'Throughput', value: '2.4Gbps' }
+          { label: 'Throughput', value: '2.4Gbps' },
         ],
-        visual: 'radar'
+        visual: 'radar',
       },
       {
         title: 'SBC/FPGA Integration',
@@ -26,11 +26,11 @@ const JOBS = [
         tags: ['SQL', 'Bamboo', 'Podman'],
         stats: [
           { label: 'Boot time', value: '-45%' },
-          { label: 'Reliability', value: '99.99%' }
+          { label: 'Reliability', value: '99.99%' },
         ],
-        visual: 'chip'
-      }
-    ]
+        visual: 'chip',
+      },
+    ],
   },
   {
     id: 'src1',
@@ -39,7 +39,8 @@ const JOBS = [
     company: 'SRC',
     location: 'Remote',
     accent: 'hsl(260, 70%, 62%)',
-    description: 'Translated drone system ICDs to a shared mission system messaging framework.',
+    description:
+      'Translated drone system ICDs to a shared mission system messaging framework.',
     projects: [
       {
         title: 'Mission Messaging Framework',
@@ -47,9 +48,9 @@ const JOBS = [
         tags: ['C++', 'Jenkins', 'Kubernetes'],
         stats: [
           { label: 'Message types', value: '24+' },
-          { label: 'Translation latency', value: '<1ms' }
+          { label: 'Translation latency', value: '<1ms' },
         ],
-        visual: 'messages'
+        visual: 'messages',
       },
       {
         title: 'ICD Integration Layer',
@@ -57,11 +58,11 @@ const JOBS = [
         tags: ['C++', 'Protobuf', 'Linux'],
         stats: [
           { label: 'Platforms integrated', value: '5' },
-          { label: 'Message throughput', value: '10k/s' }
+          { label: 'Message throughput', value: '10k/s' },
         ],
-        visual: 'drone'
-      }
-    ]
+        visual: 'drone',
+      },
+    ],
   },
   {
     id: 'yumi',
@@ -79,9 +80,9 @@ const JOBS = [
         tags: ['Next.js', 'Feathers.js', 'MySQL', 'Stripe'],
         stats: [
           { label: 'Revenue lift', value: '+120%' },
-          { label: 'Page speed', value: '95/100' }
+          { label: 'Page speed', value: '95/100' },
         ],
-        visual: 'cart'
+        visual: 'cart',
       },
       {
         title: 'Subscription Engine',
@@ -89,11 +90,11 @@ const JOBS = [
         tags: ['TypeScript', 'MySQL', 'AWS Lambda'],
         stats: [
           { label: 'Churn reduction', value: '-28%' },
-          { label: 'Active subs', value: '15k+' }
+          { label: 'Active subs', value: '15k+' },
         ],
-        visual: 'calendar'
-      }
-    ]
+        visual: 'calendar',
+      },
+    ],
   },
   {
     id: 'acquia',
@@ -111,9 +112,9 @@ const JOBS = [
         tags: ['React', 'GraphQL', 'Nest.js'],
         stats: [
           { label: 'Products unified', value: '6' },
-          { label: 'Dev velocity', value: '+35%' }
+          { label: 'Dev velocity', value: '+35%' },
         ],
-        visual: 'components'
+        visual: 'components',
       },
       {
         title: 'Internal API Gateway',
@@ -121,11 +122,11 @@ const JOBS = [
         tags: ['Go', 'Docker', 'gRPC'],
         stats: [
           { label: 'Services routed', value: '12' },
-          { label: 'Latency', value: '<2ms' }
+          { label: 'Latency', value: '<2ms' },
         ],
-        visual: 'network'
-      }
-    ]
+        visual: 'network',
+      },
+    ],
   },
   {
     id: 'urspace',
@@ -143,23 +144,24 @@ const JOBS = [
         tags: ['Next.js', 'Node.js', 'MySQL'],
         stats: [
           { label: 'Sites created', value: '8k+' },
-          { label: 'Avg build time', value: '<3min' }
+          { label: 'Avg build time', value: '<3min' },
         ],
-        visual: 'browser'
-      }
-    ]
-  }
-]
+        visual: 'browser',
+      },
+    ],
+  },
+];
 
 // Scroll-driven SVG visuals for each project type
 const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
-  const p = Math.max(0.1, Math.min(1, progress))
+  const p = Math.max(0.1, Math.min(1, progress));
 
   // ── Radar: rotating sweep with blips ──
   if (type === 'radar') {
     // Staggered fade helpers
-    const fade = (delay, dur = 0.3) => Math.max(0, Math.min(1, (p - delay) / dur))
-    const ringCirc = (r) => 2 * Math.PI * r
+    const fade = (delay, dur = 0.3) =>
+      Math.max(0, Math.min(1, (p - delay) / dur));
+    const ringCirc = r => 2 * Math.PI * r;
     return (
       <svg viewBox="0 0 160 100" className="pv-svg">
         <defs>
@@ -169,8 +171,8 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
         </defs>
         {/* Concentric rings — line-draw entrance */}
         {[14, 26, 38].map((r, i) => {
-          const circ = ringCirc(r)
-          const drawP = fade(i * 0.08, 0.5)
+          const circ = ringCirc(r);
+          const drawP = fade(i * 0.08, 0.5);
           return (
             <circle
               key={i}
@@ -184,7 +186,7 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
               strokeDasharray={circ}
               strokeDashoffset={circ * (1 - drawP)}
             />
-          )
+          );
         })}
         {/* Cross hairs — fade in */}
         <line
@@ -196,7 +198,15 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeWidth="0.3"
           opacity={0.15 * fade(0.15)}
         />
-        <line x1="80" y1="12" x2="80" y2="88" stroke={accent} strokeWidth="0.3" opacity={0.15 * fade(0.2)} />
+        <line
+          x1="80"
+          y1="12"
+          x2="80"
+          y2="88"
+          stroke={accent}
+          strokeWidth="0.3"
+          opacity={0.15 * fade(0.2)}
+        />
         {/* Sweep line — fades in, rotates */}
         <g opacity={fade(0.25, 0.4)}>
           <line
@@ -240,11 +250,18 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           { x: 95, y: 38, d: 0.35 },
           { x: 68, y: 35, d: 0.5 },
           { x: 100, y: 60, d: 0.7 },
-          { x: 72, y: 62, d: 0.45 }
+          { x: 72, y: 62, d: 0.45 },
         ].map((b, i) => {
-          const bp = fade(b.d, 0.2)
+          const bp = fade(b.d, 0.2);
           return (
-            <circle key={i} cx={b.x} cy={b.y} r="1.5" fill={accent} opacity={0.5 * bp}>
+            <circle
+              key={i}
+              cx={b.x}
+              cy={b.y}
+              r="1.5"
+              fill={accent}
+              opacity={0.5 * bp}
+            >
               <animate
                 attributeName="opacity"
                 values="0.5;0.2;0.5"
@@ -253,7 +270,7 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
                 begin={`${i * 0.5}s`}
               />
             </circle>
-          )
+          );
         })}
         {/* Outer ring — line-draw */}
         <circle
@@ -268,12 +285,13 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDashoffset={ringCirc(38) * (1 - fade(0, 0.6))}
         />
       </svg>
-    )
+    );
   }
 
   // ── Chip: FPGA/SBC with circuit traces ──
   if (type === 'chip') {
-    const fade = (delay, dur = 0.3) => Math.max(0, Math.min(1, (p - delay) / dur))
+    const fade = (delay, dur = 0.3) =>
+      Math.max(0, Math.min(1, (p - delay) / dur));
     return (
       <svg viewBox="0 0 160 100" className="pv-svg">
         {/* Main chip body — line-draw */}
@@ -291,32 +309,72 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDashoffset={220 * (1 - fade(0, 0.5))}
         />
         {/* Inner die — fade in */}
-        <rect x="62" y="35" width="36" height="30" rx="2" fill={accent} opacity={0.14 * fade(0.15, 0.4)} />
+        <rect
+          x="62"
+          y="35"
+          width="36"
+          height="30"
+          rx="2"
+          fill={accent}
+          opacity={0.14 * fade(0.15, 0.4)}
+        />
         {/* Pin traces — left, fade in staggered */}
-        {[0, 1, 2, 3].map((i) => {
-          const y = 32 + i * 11
-          const op = fade(0.1 + i * 0.08, 0.3)
+        {[0, 1, 2, 3].map(i => {
+          const y = 32 + i * 11;
+          const op = fade(0.1 + i * 0.08, 0.3);
           return (
             <g key={`l${i}`} opacity={op}>
-              <line x1="32" y1={y} x2="50" y2={y} stroke={accent} strokeWidth="0.7" opacity={0.3} />
-              <rect x="30" y={y - 1.5} width="3" height="3" rx="0.5" fill={accent} opacity={0.4} />
+              <line
+                x1="32"
+                y1={y}
+                x2="50"
+                y2={y}
+                stroke={accent}
+                strokeWidth="0.7"
+                opacity={0.3}
+              />
+              <rect
+                x="30"
+                y={y - 1.5}
+                width="3"
+                height="3"
+                rx="0.5"
+                fill={accent}
+                opacity={0.4}
+              />
             </g>
-          )
+          );
         })}
         {/* Pin traces — right */}
-        {[0, 1, 2, 3].map((i) => {
-          const y = 32 + i * 11
-          const op = fade(0.15 + i * 0.08, 0.3)
+        {[0, 1, 2, 3].map(i => {
+          const y = 32 + i * 11;
+          const op = fade(0.15 + i * 0.08, 0.3);
           return (
             <g key={`r${i}`} opacity={op}>
-              <line x1="110" y1={y} x2="128" y2={y} stroke={accent} strokeWidth="0.7" opacity={0.3} />
-              <rect x="127" y={y - 1.5} width="3" height="3" rx="0.5" fill={accent} opacity={0.4} />
+              <line
+                x1="110"
+                y1={y}
+                x2="128"
+                y2={y}
+                stroke={accent}
+                strokeWidth="0.7"
+                opacity={0.3}
+              />
+              <rect
+                x="127"
+                y={y - 1.5}
+                width="3"
+                height="3"
+                rx="0.5"
+                fill={accent}
+                opacity={0.4}
+              />
             </g>
-          )
+          );
         })}
         {/* Pin traces — top */}
-        {[0, 1, 2].map((i) => {
-          const x = 62 + i * 14
+        {[0, 1, 2].map(i => {
+          const x = 62 + i * 14;
           return (
             <line
               key={`t${i}`}
@@ -328,11 +386,11 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
               strokeWidth="0.7"
               opacity={0.3 * fade(0.2 + i * 0.08, 0.3)}
             />
-          )
+          );
         })}
         {/* Pin traces — bottom */}
-        {[0, 1, 2].map((i) => {
-          const x = 62 + i * 14
+        {[0, 1, 2].map(i => {
+          const x = 62 + i * 14;
           return (
             <line
               key={`b${i}`}
@@ -344,7 +402,7 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
               strokeWidth="0.7"
               opacity={0.3 * fade(0.25 + i * 0.08, 0.3)}
             />
-          )
+          );
         })}
         {/* Internal circuit paths — line-draw */}
         <polyline
@@ -366,16 +424,28 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDashoffset={40 * (1 - fade(0.35, 0.5))}
         />
         {/* Pulsing core — fade in */}
-        <circle cx="80" cy="50" r="3" fill={accent} opacity={0.4 * fade(0.4, 0.3)}>
-          <animate attributeName="r" values="3;4;3" dur="2s" repeatCount="indefinite" />
+        <circle
+          cx="80"
+          cy="50"
+          r="3"
+          fill={accent}
+          opacity={0.4 * fade(0.4, 0.3)}
+        >
+          <animate
+            attributeName="r"
+            values="3;4;3"
+            dur="2s"
+            repeatCount="indefinite"
+          />
         </circle>
       </svg>
-    )
+    );
   }
 
   // ── Messages: packets flowing between nodes ──
   if (type === 'messages') {
-    const fade = (delay, dur = 0.3) => Math.max(0, Math.min(1, (p - delay) / dur))
+    const fade = (delay, dur = 0.3) =>
+      Math.max(0, Math.min(1, (p - delay) / dur));
     return (
       <svg viewBox="0 0 160 100" className="pv-svg">
         {/* Source node — line-draw */}
@@ -392,9 +462,33 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDasharray="140"
           strokeDashoffset={140 * (1 - fade(0, 0.4))}
         />
-        <rect x="16" y="38" width="18" height="2.5" rx="1" fill={accent} opacity={0.3 * fade(0.15, 0.3)} />
-        <rect x="16" y="44" width="12" height="2.5" rx="1" fill={accent} opacity={0.2 * fade(0.2, 0.3)} />
-        <rect x="16" y="50" width="15" height="2.5" rx="1" fill={accent} opacity={0.25 * fade(0.25, 0.3)} />
+        <rect
+          x="16"
+          y="38"
+          width="18"
+          height="2.5"
+          rx="1"
+          fill={accent}
+          opacity={0.3 * fade(0.15, 0.3)}
+        />
+        <rect
+          x="16"
+          y="44"
+          width="12"
+          height="2.5"
+          rx="1"
+          fill={accent}
+          opacity={0.2 * fade(0.2, 0.3)}
+        />
+        <rect
+          x="16"
+          y="50"
+          width="15"
+          height="2.5"
+          rx="1"
+          fill={accent}
+          opacity={0.25 * fade(0.25, 0.3)}
+        />
         {/* Destination node — line-draw */}
         <rect
           x="120"
@@ -409,8 +503,24 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDasharray="140"
           strokeDashoffset={140 * (1 - fade(0.05, 0.4))}
         />
-        <rect x="126" y="38" width="18" height="2.5" rx="1" fill={accent} opacity={0.3 * fade(0.2, 0.3)} />
-        <rect x="126" y="44" width="12" height="2.5" rx="1" fill={accent} opacity={0.2 * fade(0.25, 0.3)} />
+        <rect
+          x="126"
+          y="38"
+          width="18"
+          height="2.5"
+          rx="1"
+          fill={accent}
+          opacity={0.3 * fade(0.2, 0.3)}
+        />
+        <rect
+          x="126"
+          y="44"
+          width="12"
+          height="2.5"
+          rx="1"
+          fill={accent}
+          opacity={0.2 * fade(0.25, 0.3)}
+        />
         {/* Connection line — line-draw */}
         <line
           x1="40"
@@ -437,12 +547,19 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDasharray="120"
           strokeDashoffset={120 * (1 - fade(0.15, 0.4))}
         />
-        <text x="80" y="53" textAnchor="middle" fill={accent} fontSize="5" opacity={0.5 * fade(0.3, 0.3)}>
+        <text
+          x="80"
+          y="53"
+          textAnchor="middle"
+          fill={accent}
+          fontSize="5"
+          opacity={0.5 * fade(0.3, 0.3)}
+        >
           ICD
         </text>
         {/* Flowing message packets — fade in after structure */}
         <g opacity={fade(0.4, 0.3)}>
-          {[0, 1, 2].map((i) => (
+          {[0, 1, 2].map(i => (
             <rect key={i} width="8" height="5" rx="1" fill={accent} opacity={0}>
               <animateMotion
                 path="M 40,50 L 62,50"
@@ -459,8 +576,15 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
               />
             </rect>
           ))}
-          {[0, 1, 2].map((i) => (
-            <rect key={`o${i}`} width="8" height="5" rx="1" fill={accent} opacity={0}>
+          {[0, 1, 2].map(i => (
+            <rect
+              key={`o${i}`}
+              width="8"
+              height="5"
+              rx="1"
+              fill={accent}
+              opacity={0}
+            >
               <animateMotion
                 path="M 98,50 L 120,50"
                 dur="1.5s"
@@ -478,12 +602,13 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           ))}
         </g>
       </svg>
-    )
+    );
   }
 
   // ── Drone: quadcopter with signal lines to adapters ──
   if (type === 'drone') {
-    const fade = (delay, dur = 0.3) => Math.max(0, Math.min(1, (p - delay) / dur))
+    const fade = (delay, dur = 0.3) =>
+      Math.max(0, Math.min(1, (p - delay) / dur));
     return (
       <svg viewBox="0 0 160 100" className="pv-svg">
         {/* Drone body — line-draw */}
@@ -505,9 +630,9 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           { x: 60, y: 22 },
           { x: 100, y: 22 },
           { x: 60, y: 34 },
-          { x: 100, y: 34 }
+          { x: 100, y: 34 },
         ].map((arm, i) => {
-          const op = fade(0.1 + i * 0.06, 0.3)
+          const op = fade(0.1 + i * 0.06, 0.3);
           return (
             <g key={i} opacity={op}>
               <line
@@ -539,10 +664,10 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
                 />
               </circle>
             </g>
-          )
+          );
         })}
         {/* Signal waves — line-draw */}
-        {[0, 1, 2].map((i) => (
+        {[0, 1, 2].map(i => (
           <path
             key={i}
             d={`M ${74 + i * 6},38 Q ${74 + i * 6},${48 + i * 4} 80,${55 + i * 6}`}
@@ -555,9 +680,9 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           />
         ))}
         {/* Adapter boxes — fade in staggered */}
-        {[0, 1, 2, 3, 4].map((i) => {
-          const op = fade(0.3 + i * 0.06, 0.3)
-          const x = 22 + i * 26
+        {[0, 1, 2, 3, 4].map(i => {
+          const op = fade(0.3 + i * 0.06, 0.3);
+          const x = 22 + i * 26;
           return (
             <g key={i} opacity={op}>
               <rect
@@ -571,10 +696,26 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
                 strokeWidth="0.6"
                 opacity={0.5}
               />
-              <rect x={x + 3} y="76" width="14" height="2" rx="1" fill={accent} opacity={0.25} />
-              <rect x={x + 3} y="80" width="10" height="2" rx="1" fill={accent} opacity={0.15} />
+              <rect
+                x={x + 3}
+                y="76"
+                width="14"
+                height="2"
+                rx="1"
+                fill={accent}
+                opacity={0.25}
+              />
+              <rect
+                x={x + 3}
+                y="80"
+                width="10"
+                height="2"
+                rx="1"
+                fill={accent}
+                opacity={0.15}
+              />
             </g>
-          )
+          );
         })}
         {/* Connection line — fade in */}
         <line
@@ -588,12 +729,13 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDasharray="2 2"
         />
       </svg>
-    )
+    );
   }
 
   // ── Cart: e-commerce storefront ──
   if (type === 'cart') {
-    const fade = (delay, dur = 0.3) => Math.max(0, Math.min(1, (p - delay) / dur))
+    const fade = (delay, dur = 0.3) =>
+      Math.max(0, Math.min(1, (p - delay) / dur));
     return (
       <svg viewBox="0 0 160 100" className="pv-svg">
         {/* Browser frame — line-draw */}
@@ -622,22 +764,80 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeWidth="0.5"
           opacity={0.15 * fade(0.1, 0.3)}
         />
-        <circle cx="23" cy="14" r="2" fill={accent} opacity={0.2 * fade(0.12, 0.2)} />
-        <circle cx="30" cy="14" r="2" fill={accent} opacity={0.15 * fade(0.15, 0.2)} />
-        <circle cx="37" cy="14" r="2" fill={accent} opacity={0.1 * fade(0.18, 0.2)} />
-        <rect x="48" y="12" width="50" height="4" rx="2" fill={accent} opacity={0.1 * fade(0.15, 0.3)} />
+        <circle
+          cx="23"
+          cy="14"
+          r="2"
+          fill={accent}
+          opacity={0.2 * fade(0.12, 0.2)}
+        />
+        <circle
+          cx="30"
+          cy="14"
+          r="2"
+          fill={accent}
+          opacity={0.15 * fade(0.15, 0.2)}
+        />
+        <circle
+          cx="37"
+          cy="14"
+          r="2"
+          fill={accent}
+          opacity={0.1 * fade(0.18, 0.2)}
+        />
+        <rect
+          x="48"
+          y="12"
+          width="50"
+          height="4"
+          rx="2"
+          fill={accent}
+          opacity={0.1 * fade(0.15, 0.3)}
+        />
         {/* Product grid — staggered fade */}
-        {[0, 1, 2].map((col) => {
-          const op = fade(0.15 + col * 0.1, 0.35)
-          const x = 22 + col * 40
+        {[0, 1, 2].map(col => {
+          const op = fade(0.15 + col * 0.1, 0.35);
+          const x = 22 + col * 40;
           return (
             <g key={col} opacity={op}>
-              <rect x={x} y="28" width="32" height="24" rx="3" fill={accent} opacity={0.06} />
-              <rect x={x + 4} y="56" width="24" height="2.5" rx="1" fill={accent} opacity={0.25} />
-              <rect x={x + 4} y="61" width="16" height="2" rx="1" fill={accent} opacity={0.15} />
-              <rect x={x + 4} y="67" width="20" height="5" rx="2" fill={accent} opacity={0.35} />
+              <rect
+                x={x}
+                y="28"
+                width="32"
+                height="24"
+                rx="3"
+                fill={accent}
+                opacity={0.06}
+              />
+              <rect
+                x={x + 4}
+                y="56"
+                width="24"
+                height="2.5"
+                rx="1"
+                fill={accent}
+                opacity={0.25}
+              />
+              <rect
+                x={x + 4}
+                y="61"
+                width="16"
+                height="2"
+                rx="1"
+                fill={accent}
+                opacity={0.15}
+              />
+              <rect
+                x={x + 4}
+                y="67"
+                width="20"
+                height="5"
+                rx="2"
+                fill={accent}
+                opacity={0.35}
+              />
             </g>
-          )
+          );
         })}
         {/* Cart icon — fade in */}
         <g opacity={fade(0.5, 0.3)}>
@@ -650,17 +850,25 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           />
           <circle cx="125" cy="48" r="1.5" fill={accent} opacity={0.4} />
           <circle cx="134" cy="48" r="1.5" fill={accent} opacity={0.4} />
-          <text x="130" y="39" textAnchor="middle" fill={accent} fontSize="6" opacity={0.5}>
+          <text
+            x="130"
+            y="39"
+            textAnchor="middle"
+            fill={accent}
+            fontSize="6"
+            opacity={0.5}
+          >
             3
           </text>
         </g>
       </svg>
-    )
+    );
   }
 
   // ── Calendar: subscription with recurring markers ──
   if (type === 'calendar') {
-    const fade = (delay, dur = 0.3) => Math.max(0, Math.min(1, (p - delay) / dur))
+    const fade = (delay, dur = 0.3) =>
+      Math.max(0, Math.min(1, (p - delay) / dur));
     return (
       <svg viewBox="0 0 160 100" className="pv-svg">
         {/* Calendar frame — line-draw */}
@@ -678,16 +886,32 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDashoffset={400 * (1 - fade(0, 0.5))}
         />
         {/* Header — fade in */}
-        <rect x="20" y="10" width="120" height="16" rx="6" fill={accent} opacity={0.08 * fade(0.1, 0.3)} />
-        <rect x="55" y="15" width="50" height="3" rx="1.5" fill={accent} opacity={0.3 * fade(0.15, 0.3)} />
+        <rect
+          x="20"
+          y="10"
+          width="120"
+          height="16"
+          rx="6"
+          fill={accent}
+          opacity={0.08 * fade(0.1, 0.3)}
+        />
+        <rect
+          x="55"
+          y="15"
+          width="50"
+          height="3"
+          rx="1.5"
+          fill={accent}
+          opacity={0.3 * fade(0.15, 0.3)}
+        />
         {/* Day grid — staggered fade, row by row */}
         {Array.from({ length: 28 }, (_, i) => {
           const col = i % 7,
-            row = Math.floor(i / 7)
-          const op = fade(0.15 + row * 0.1 + col * 0.015, 0.25)
-          const isDelivery = [2, 9, 16, 23].includes(i)
+            row = Math.floor(i / 7);
+          const op = fade(0.15 + row * 0.1 + col * 0.015, 0.25);
+          const isDelivery = [2, 9, 16, 23].includes(i);
           const x = 26 + col * 16,
-            y = 32 + row * 14
+            y = 32 + row * 14;
           return (
             <g key={i} opacity={op}>
               <rect
@@ -702,12 +926,19 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
                 opacity={isDelivery ? 0.2 : 0.1}
               />
               {isDelivery && (
-                <text x={x + 6} y={y + 7} textAnchor="middle" fill={accent} fontSize="4" opacity={0.6}>
+                <text
+                  x={x + 6}
+                  y={y + 7}
+                  textAnchor="middle"
+                  fill={accent}
+                  fontSize="4"
+                  opacity={0.6}
+                >
                   ✓
                 </text>
               )}
             </g>
-          )
+          );
         })}
         {/* Recurring arrow — line-draw */}
         <path
@@ -720,23 +951,27 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDashoffset={100 * (1 - fade(0.5, 0.4))}
         />
       </svg>
-    )
+    );
   }
 
   // ── Components: UI component grid ──
   if (type === 'components') {
-    const fade = (delay, dur = 0.3) => Math.max(0, Math.min(1, (p - delay) / dur))
-    const perim = 2 * (38 + 36)
+    const fade = (delay, dur = 0.3) =>
+      Math.max(0, Math.min(1, (p - delay) / dur));
+    const perim = 2 * (38 + 36);
     return (
       <svg viewBox="0 0 160 100" className="pv-svg">
-        {[0, 1, 2, 3, 4, 5].map((i) => {
+        {[0, 1, 2, 3, 4, 5].map(i => {
           const col = i % 3,
-            row = Math.floor(i / 3)
-          const d = i * 0.1
-          const drawP = fade(d, 0.4)
-          const contentP = fade(d + 0.15, 0.3)
+            row = Math.floor(i / 3);
+          const d = i * 0.1;
+          const drawP = fade(d, 0.4);
+          const contentP = fade(d + 0.15, 0.3);
           return (
-            <g key={i} transform={`translate(${15 + col * 46}, ${12 + row * 44})`}>
+            <g
+              key={i}
+              transform={`translate(${15 + col * 46}, ${12 + row * 44})`}
+            >
               {/* Card outline — line-draw */}
               <rect
                 width="38"
@@ -750,8 +985,24 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
                 strokeDashoffset={perim * (1 - drawP)}
               />
               {/* Inner content — fade in */}
-              <rect x="6" y="8" width="20" height="3" rx="1.5" fill={accent} opacity={0.4 * contentP} />
-              <rect x="6" y="15" width="14" height="3" rx="1.5" fill={accent} opacity={0.2 * contentP} />
+              <rect
+                x="6"
+                y="8"
+                width="20"
+                height="3"
+                rx="1.5"
+                fill={accent}
+                opacity={0.4 * contentP}
+              />
+              <rect
+                x="6"
+                y="15"
+                width="14"
+                height="3"
+                rx="1.5"
+                fill={accent}
+                opacity={0.2 * contentP}
+              />
               <circle
                 cx="30"
                 cy="26"
@@ -762,16 +1013,17 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
                 opacity={0.3 * contentP}
               />
             </g>
-          )
+          );
         })}
       </svg>
-    )
+    );
   }
 
   // ── Network: API gateway hub-spoke ──
   if (type === 'network') {
-    const fade = (delay, dur = 0.3) => Math.max(0, Math.min(1, (p - delay) / dur))
-    const hubCirc = 2 * Math.PI * 14
+    const fade = (delay, dur = 0.3) =>
+      Math.max(0, Math.min(1, (p - delay) / dur));
+    const hubCirc = 2 * Math.PI * 14;
     return (
       <svg viewBox="0 0 160 100" className="pv-svg">
         {/* Central hub — line-draw */}
@@ -786,20 +1038,41 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDasharray={hubCirc}
           strokeDashoffset={hubCirc * (1 - fade(0, 0.4))}
         />
-        <circle cx="80" cy="50" r="5" fill={accent} opacity={0.4 * fade(0.1, 0.3)} />
-        <text x="80" y="53" textAnchor="middle" fill={accent} fontSize="5" opacity={0.5 * fade(0.15, 0.3)}>
+        <circle
+          cx="80"
+          cy="50"
+          r="5"
+          fill={accent}
+          opacity={0.4 * fade(0.1, 0.3)}
+        />
+        <text
+          x="80"
+          y="53"
+          textAnchor="middle"
+          fill={accent}
+          fontSize="5"
+          opacity={0.5 * fade(0.15, 0.3)}
+        >
           GW
         </text>
         {/* Spoke services — staggered fade */}
-        {[0, 1, 2, 3, 4, 5].map((i) => {
-          const angle = (i / 6) * Math.PI * 2 - Math.PI / 2
-          const dist = 34
-          const x = 80 + Math.cos(angle) * dist
-          const y = 50 + Math.sin(angle) * dist
-          const op = fade(0.15 + i * 0.08, 0.35)
+        {[0, 1, 2, 3, 4, 5].map(i => {
+          const angle = (i / 6) * Math.PI * 2 - Math.PI / 2;
+          const dist = 34;
+          const x = 80 + Math.cos(angle) * dist;
+          const y = 50 + Math.sin(angle) * dist;
+          const op = fade(0.15 + i * 0.08, 0.35);
           return (
             <g key={i} opacity={op}>
-              <line x1={80} y1={50} x2={x} y2={y} stroke={accent} strokeWidth="0.6" opacity={0.25} />
+              <line
+                x1={80}
+                y1={50}
+                x2={x}
+                y2={y}
+                stroke={accent}
+                strokeWidth="0.6"
+                opacity={0.25}
+              />
               <rect
                 x={x - 8}
                 y={y - 6}
@@ -811,9 +1084,17 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
                 strokeWidth="0.7"
                 opacity={0.35}
               />
-              <rect x={x - 5} y={y - 2} width="10" height="2" rx="1" fill={accent} opacity={0.2} />
+              <rect
+                x={x - 5}
+                y={y - 2}
+                width="10"
+                height="2"
+                rx="1"
+                fill={accent}
+                opacity={0.2}
+              />
             </g>
-          )
+          );
         })}
         {/* Orbiting request dot — fade in */}
         <circle r="1.5" fill={accent} opacity={0.6 * fade(0.6, 0.3)}>
@@ -824,12 +1105,13 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           />
         </circle>
       </svg>
-    )
+    );
   }
 
   // ── Browser: website builder with layers ──
   if (type === 'browser') {
-    const fade = (delay, dur = 0.3) => Math.max(0, Math.min(1, (p - delay) / dur))
+    const fade = (delay, dur = 0.3) =>
+      Math.max(0, Math.min(1, (p - delay) / dur));
     return (
       <svg viewBox="0 0 160 100" className="pv-svg">
         {/* Browser chrome — line-draw */}
@@ -846,13 +1128,46 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           strokeDasharray="428"
           strokeDashoffset={428 * (1 - fade(0, 0.5))}
         />
-        <rect x="15" y="8" width="130" height="12" rx="6" fill={accent} opacity={0.05 * fade(0.1, 0.3)} />
-        <circle cx="23" cy="14" r="2" fill={accent} opacity={0.2 * fade(0.12, 0.2)} />
-        <circle cx="30" cy="14" r="2" fill={accent} opacity={0.15 * fade(0.15, 0.2)} />
-        <circle cx="37" cy="14" r="2" fill={accent} opacity={0.1 * fade(0.18, 0.2)} />
+        <rect
+          x="15"
+          y="8"
+          width="130"
+          height="12"
+          rx="6"
+          fill={accent}
+          opacity={0.05 * fade(0.1, 0.3)}
+        />
+        <circle
+          cx="23"
+          cy="14"
+          r="2"
+          fill={accent}
+          opacity={0.2 * fade(0.12, 0.2)}
+        />
+        <circle
+          cx="30"
+          cy="14"
+          r="2"
+          fill={accent}
+          opacity={0.15 * fade(0.15, 0.2)}
+        />
+        <circle
+          cx="37"
+          cy="14"
+          r="2"
+          fill={accent}
+          opacity={0.1 * fade(0.18, 0.2)}
+        />
         {/* Sidebar — fade in */}
-        <rect x="15" y="20" width="28" height="72" fill={accent} opacity={0.04 * fade(0.15, 0.3)} />
-        {[0, 1, 2, 3].map((i) => (
+        <rect
+          x="15"
+          y="20"
+          width="28"
+          height="72"
+          fill={accent}
+          opacity={0.04 * fade(0.15, 0.3)}
+        />
+        {[0, 1, 2, 3].map(i => (
           <rect
             key={i}
             x="20"
@@ -865,9 +1180,9 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
           />
         ))}
         {/* Content blocks — staggered fade */}
-        {[0, 1, 2].map((i) => {
-          const op = fade(0.2 + i * 0.12, 0.35)
-          const y = 26 + i * 22
+        {[0, 1, 2].map(i => {
+          const op = fade(0.2 + i * 0.12, 0.35);
+          const y = 26 + i * 22;
           return (
             <g key={i} opacity={op}>
               <rect
@@ -881,10 +1196,26 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
                 strokeWidth="0.6"
                 opacity={0.4}
               />
-              <rect x="52" y={y + 4} width="50" height="3" rx="1.5" fill={accent} opacity={0.25} />
-              <rect x="52" y={y + 10} width="35" height="2.5" rx="1" fill={accent} opacity={0.15} />
+              <rect
+                x="52"
+                y={y + 4}
+                width="50"
+                height="3"
+                rx="1.5"
+                fill={accent}
+                opacity={0.25}
+              />
+              <rect
+                x="52"
+                y={y + 10}
+                width="35"
+                height="2.5"
+                rx="1"
+                fill={accent}
+                opacity={0.15}
+              />
             </g>
-          )
+          );
         })}
         {/* Drop zone — fade in */}
         <g opacity={fade(0.6, 0.3)}>
@@ -900,24 +1231,32 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
             opacity={0.3}
             strokeDasharray="3 3"
           />
-          <text x="93" y="82" textAnchor="middle" fill={accent} fontSize="5" opacity={0.3}>
+          <text
+            x="93"
+            y="82"
+            textAnchor="middle"
+            fill={accent}
+            fontSize="5"
+            opacity={0.3}
+          >
             Drop here
           </text>
         </g>
       </svg>
-    )
+    );
   }
 
   // ── Default fallback: generic layers ──
   {
-    const fade = (delay, dur = 0.3) => Math.max(0, Math.min(1, (p - delay) / dur))
-    const perim = 2 * (110 + 18)
+    const fade = (delay, dur = 0.3) =>
+      Math.max(0, Math.min(1, (p - delay) / dur));
+    const perim = 2 * (110 + 18);
     return (
       <svg viewBox="0 0 160 100" className="pv-svg">
-        {[0, 1, 2].map((i) => {
-          const y = 70 - i * 22
-          const drawP = fade(i * 0.15, 0.4)
-          const contentP = fade(i * 0.15 + 0.2, 0.3)
+        {[0, 1, 2].map(i => {
+          const y = 70 - i * 22;
+          const drawP = fade(i * 0.15, 0.4);
+          const contentP = fade(i * 0.15 + 0.2, 0.3);
           return (
             <g key={i}>
               {/* Layer outline — line-draw */}
@@ -935,90 +1274,120 @@ const ProjectVisual = memo(function ProjectVisual({ type, progress, accent }) {
                 strokeDashoffset={perim * (1 - drawP)}
               />
               {/* Inner bars — fade in */}
-              <rect x="32" y={y + 5} width="60" height="3" rx="1.5" fill={accent} opacity={0.3 * contentP} />
-              <rect x="32" y={y + 11} width="40" height="2" rx="1" fill={accent} opacity={0.15 * contentP} />
+              <rect
+                x="32"
+                y={y + 5}
+                width="60"
+                height="3"
+                rx="1.5"
+                fill={accent}
+                opacity={0.3 * contentP}
+              />
+              <rect
+                x="32"
+                y={y + 11}
+                width="40"
+                height="2"
+                rx="1"
+                fill={accent}
+                opacity={0.15 * contentP}
+              />
             </g>
-          )
+          );
         })}
       </svg>
-    )
+    );
   }
-})
+});
 
 export default function CareerParallax() {
-  const containerRef = useRef(null)
+  const containerRef = useRef(null);
   const [scrollData, setScrollData] = useState({
     jobIndex: 0,
     jobProgress: 0,
     projectIndex: 0,
-    projectProgress: 0
-  })
+    projectProgress: 0,
+  });
 
   const handleScroll = useCallback(() => {
-    const container = containerRef.current
-    if (!container) return
+    const container = containerRef.current;
+    if (!container) return;
 
-    const rect = container.getBoundingClientRect()
-    const containerTop = -rect.top
-    const containerHeight = container.scrollHeight - window.innerHeight
+    const rect = container.getBoundingClientRect();
+    const containerTop = -rect.top;
+    const containerHeight = container.scrollHeight - window.innerHeight;
 
-    if (containerHeight <= 0) return
+    if (containerHeight <= 0) return;
 
     // Clamp to [0,1] so the first and last states always render
-    const totalProgress = Math.max(0, Math.min(1, containerTop / containerHeight))
-    const jobCount = JOBS.length
-    const perJob = 1 / jobCount
-    const jobIndex = Math.min(Math.floor(totalProgress / perJob), jobCount - 1)
-    const jobProgress = Math.min(1, (totalProgress - jobIndex * perJob) / perJob)
+    const totalProgress = Math.max(
+      0,
+      Math.min(1, containerTop / containerHeight)
+    );
+    const jobCount = JOBS.length;
+    const perJob = 1 / jobCount;
+    const jobIndex = Math.min(Math.floor(totalProgress / perJob), jobCount - 1);
+    const jobProgress = Math.min(
+      1,
+      (totalProgress - jobIndex * perJob) / perJob
+    );
 
-    const job = JOBS[jobIndex]
-    const projCount = job.projects.length
-    const perProj = 1 / projCount
-    const projectIndex = Math.min(Math.floor(jobProgress / perProj), projCount - 1)
-    const projectProgress = Math.min(1, (jobProgress - projectIndex * perProj) / perProj)
+    const job = JOBS[jobIndex];
+    const projCount = job.projects.length;
+    const perProj = 1 / projCount;
+    const projectIndex = Math.min(
+      Math.floor(jobProgress / perProj),
+      projCount - 1
+    );
+    const projectProgress = Math.min(
+      1,
+      (jobProgress - projectIndex * perProj) / perProj
+    );
 
-    setScrollData((prev) => {
+    setScrollData(prev => {
       if (
         prev.jobIndex === jobIndex &&
         prev.projectIndex === projectIndex &&
         Math.abs(prev.projectProgress - projectProgress) < 0.005 &&
         Math.abs(prev.jobProgress - jobProgress) < 0.005
       )
-        return prev
-      return { jobIndex, jobProgress, projectIndex, projectProgress }
-    })
-  }, [])
+        return prev;
+      return { jobIndex, jobProgress, projectIndex, projectProgress };
+    });
+  }, []);
 
   useEffect(() => {
-    let ticking = false
+    let ticking = false;
     function onScroll() {
       if (!ticking) {
         requestAnimationFrame(() => {
-          handleScroll()
-          ticking = false
-        })
-        ticking = true
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
     }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    handleScroll()
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [handleScroll])
+    window.addEventListener('scroll', onScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [handleScroll]);
 
-  const { jobIndex, jobProgress, projectIndex, projectProgress } = scrollData
-  const activeJob = JOBS[jobIndex]
-  const activeProject = activeJob.projects[projectIndex]
+  const { jobIndex, jobProgress, projectIndex, projectProgress } = scrollData;
+  const activeJob = JOBS[jobIndex];
+  const activeProject = activeJob.projects[projectIndex];
 
   // SVG progress line offset (scroll drives the stroke)
-  const totalJobs = JOBS.length
-  const globalProgress = (jobIndex + jobProgress) / totalJobs
+  const totalJobs = JOBS.length;
+  const globalProgress = (jobIndex + jobProgress) / totalJobs;
 
   return (
     <div
       ref={containerRef}
       className="cp-container"
       data-accent={activeJob.accent}
-      style={{ height: `${JOBS.reduce((sum, j) => sum + j.projects.length, 0) * 60 + 40}vh` }}
+      style={{
+        height: `${JOBS.reduce((sum, j) => sum + j.projects.length, 0) * 60 + 40}vh`,
+      }}
     >
       <div className="cp-sticky">
         {/* Left: Job info */}
@@ -1029,7 +1398,7 @@ export default function CareerParallax() {
               <div
                 className="cp-progressFill"
                 style={{
-                  height: `${globalProgress * 100}%`
+                  height: `${globalProgress * 100}%`,
                 }}
               />
             </div>
@@ -1061,7 +1430,10 @@ export default function CareerParallax() {
                 <span
                   key={i}
                   className={`cp-projDot ${i === projectIndex ? 'cp-projDotActive' : ''}`}
-                  style={{ background: i === projectIndex ? activeJob.accent : undefined }}
+                  style={{
+                    background:
+                      i === projectIndex ? activeJob.accent : undefined,
+                  }}
                 />
               ))}
             </div>
@@ -1072,7 +1444,9 @@ export default function CareerParallax() {
         <div className="cp-right">
           <div
             className="cp-projectCard"
-            style={{ '--accent': activeProject ? activeJob.accent : 'hsl(230,80%,65%)' }}
+            style={{
+              '--accent': activeProject ? activeJob.accent : 'hsl(230,80%,65%)',
+            }}
           >
             {/* Scroll-driven SVG visual */}
             <div className="cp-visual">
@@ -1090,8 +1464,11 @@ export default function CareerParallax() {
               <div
                 className="cp-projInfo"
                 style={{
-                  opacity: Math.max(0.15, Math.min(1, projectProgress * 2.5 + 0.15)),
-                  transform: `translateY(${(1 - Math.min(1, projectProgress * 2 + 0.3)) * 16}px)`
+                  opacity: Math.max(
+                    0.15,
+                    Math.min(1, projectProgress * 2.5 + 0.15)
+                  ),
+                  transform: `translateY(${(1 - Math.min(1, projectProgress * 2 + 0.3)) * 16}px)`,
                 }}
               >
                 <h4 className="cp-projTitle">{activeProject.title}</h4>
@@ -1099,7 +1476,7 @@ export default function CareerParallax() {
 
                 {/* Stats */}
                 <div className="cp-stats">
-                  {activeProject.stats.map((s) => (
+                  {activeProject.stats.map(s => (
                     <div key={s.label} className="cp-stat">
                       <span className="cp-statVal">{s.value}</span>
                       <span className="cp-statLabel">{s.label}</span>
@@ -1109,7 +1486,7 @@ export default function CareerParallax() {
 
                 {/* Tags */}
                 <div className="cp-tags">
-                  {activeProject.tags.map((t) => (
+                  {activeProject.tags.map(t => (
                     <span key={t} className="cp-tag">
                       {t}
                     </span>
@@ -1120,7 +1497,10 @@ export default function CareerParallax() {
           </div>
 
           {/* Scroll hint */}
-          <div className="cp-scrollHint" style={{ opacity: globalProgress < 0.05 ? 1 : 0 }}>
+          <div
+            className="cp-scrollHint"
+            style={{ opacity: globalProgress < 0.05 ? 1 : 0 }}
+          >
             <svg width="16" height="24" viewBox="0 0 16 24" fill="none">
               <rect
                 x="1"
@@ -1132,7 +1512,12 @@ export default function CareerParallax() {
                 strokeWidth="1.5"
               />
               <circle cx="8" cy="8" r="2" fill="rgba(255,255,255,0.4)">
-                <animate attributeName="cy" values="7;14;7" dur="2s" repeatCount="indefinite" />
+                <animate
+                  attributeName="cy"
+                  values="7;14;7"
+                  dur="2s"
+                  repeatCount="indefinite"
+                />
               </circle>
             </svg>
             <span>Scroll to explore</span>
@@ -1147,12 +1532,12 @@ export default function CareerParallax() {
 
         .cp-sticky {
           position: sticky;
-          top: 0;
-          height: 100vh;
+          top: 56px;
+          height: calc(100vh - 56px);
           display: grid;
-          grid-template-columns: 1fr 1.2fr;
+          grid-template-columns: 1fr 1.4fr;
           gap: 3rem;
-          align-items: center;
+          align-items: stretch;
           padding: 2rem max(2rem, calc((100vw - 1200px) / 2));
           box-sizing: border-box;
           width: 100%;
@@ -1162,6 +1547,10 @@ export default function CareerParallax() {
         .cp-left {
           position: relative;
           padding-left: 2.8rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          height: 100%;
         }
 
         .cp-timeline {
@@ -1169,7 +1558,7 @@ export default function CareerParallax() {
           left: 0;
           top: 50%;
           transform: translateY(-50%);
-          height: 140px;
+          height: min(60vh, 320px);
           width: 12px;
           display: flex;
           flex-direction: column;
@@ -1232,7 +1621,8 @@ export default function CareerParallax() {
           height: 10px;
           background: var(--dot-accent);
           border-color: var(--dot-accent);
-          box-shadow: 0 0 0 3px color-mix(in srgb, var(--dot-accent) 25%, transparent);
+          box-shadow: 0 0 0 3px
+            color-mix(in srgb, var(--dot-accent) 25%, transparent);
         }
 
         .cp-dotPast .cp-dotCircle {
@@ -1314,17 +1704,22 @@ export default function CareerParallax() {
           flex-direction: column;
           align-items: center;
           gap: 1rem;
+          height: 100%;
+          justify-content: center;
         }
 
         .cp-projectCard {
           width: 100%;
+          height: calc(100vh - 56px - 12rem);
           border-radius: 16px;
           background: color-mix(in srgb, var(--surface) 60%, transparent);
           backdrop-filter: blur(16px);
           -webkit-backdrop-filter: blur(16px);
           border: 1px solid var(--border);
-          padding: 1.5rem;
+          padding: 2rem;
           overflow: hidden;
+          display: flex;
+          flex-direction: column;
           box-shadow:
             0 1px 2px hsl(var(--shadow-color, 230 40% 10%) / 0.08),
             0 4px 12px hsl(var(--shadow-color, 230 40% 10%) / 0.06);
@@ -1342,12 +1737,13 @@ export default function CareerParallax() {
 
         .cp-visual {
           width: 100%;
-          height: 160px;
+          flex: 1;
+          min-height: 0;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 1rem;
-          border-radius: 10px;
+          margin-bottom: 1.5rem;
+          border-radius: 12px;
           background: color-mix(in srgb, var(--bg) 70%, transparent);
           border: 1px solid var(--border);
         }
@@ -1427,7 +1823,7 @@ export default function CareerParallax() {
           align-items: center;
           gap: 0.5rem;
           font-size: 0.7rem;
-          color: var(--text-secondary, #9ba3b8);
+          color: var(--text-tertiary, #6b7280);
           transition: opacity 600ms ease;
         }
 
@@ -1437,6 +1833,7 @@ export default function CareerParallax() {
             grid-template-columns: 1fr;
             gap: 1rem;
             padding: 1.5rem 1.5rem;
+            align-items: stretch;
           }
 
           .cp-left {
@@ -1448,10 +1845,11 @@ export default function CareerParallax() {
           }
 
           .cp-visual {
-            height: 100px;
+            flex: 1;
+            min-height: 120px;
           }
         }
       `}</style>
     </div>
-  )
+  );
 }

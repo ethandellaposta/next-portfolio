@@ -1,0 +1,5 @@
+module.exports = {
+  '*.{js,jsx,ts,tsx}': ['next lint --fix', 'prettier --write'],
+  '*.{json,md,yml,yaml}': ['prettier --write'],
+  '*.{css,scss}': ['prettier --write'],
+};

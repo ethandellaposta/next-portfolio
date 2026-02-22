@@ -42,9 +42,9 @@ export const NAV_LINKS = [
 
 export const CONTACT_LINKS = [
   {
-    href: 'mailto:ethanjdellaposta@gmail.com',
+    href: 'mailto:ethandellaposta@gmail.com',
     label: 'Email',
-    value: 'ethanjdellaposta@gmail.com',
+    value: 'ethandellaposta@gmail.com',
     icon: 'mail',
     external: false
   },

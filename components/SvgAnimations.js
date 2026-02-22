@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react';
 
 /**
  * Rich SVG animations using browser-native SVG features:
@@ -46,29 +46,29 @@ export function HeroSvg() {
     { x: 380, y: 255, r: 1.8, hue: 230, dur: 4.5, delay: 0 },
     { x: 560, y: 265, r: 2.2, hue: 280, dur: 3.5, delay: 0.9 },
     { x: 760, y: 250, r: 2, hue: 200, dur: 4, delay: 0.4 },
-    { x: 920, y: 270, r: 1.5, hue: 230, dur: 3, delay: 1.1 }
-  ]
+    { x: 920, y: 270, r: 1.5, hue: 230, dur: 3, delay: 1.1 },
+  ];
 
   // Generate connections between nearby nodes
-  const connections = []
+  const connections = [];
   for (let i = 0; i < nodes.length; i++) {
     for (let j = i + 1; j < nodes.length; j++) {
-      const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y)
+      const dist = Math.hypot(nodes[i].x - nodes[j].x, nodes[i].y - nodes[j].y);
       if (dist < 200 && dist > 60) {
-        connections.push({ a: nodes[i], b: nodes[j], dist, i, j })
+        connections.push({ a: nodes[i], b: nodes[j], dist, i, j });
       }
     }
   }
   // Keep only the best connections (not too many)
-  const kept = connections.sort((a, b) => a.dist - b.dist).slice(0, 30)
+  const kept = connections.sort((a, b) => a.dist - b.dist).slice(0, 30);
 
   // Curved paths through clusters
   const paths = [
     'M 40,140 C 120,80 220,20 400,35 S 580,90 740,40 S 900,22 960,50',
     'M 0,200 C 100,200 180,130 350,150 S 540,135 720,145 S 880,130 1000,160',
     'M 60,30 C 120,80 310,70 500,85 S 660,75 830,90 S 950,60 1000,80',
-    'M 50,260 C 200,270 380,255 560,265 S 760,250 920,270'
-  ]
+    'M 50,260 C 200,270 380,255 560,265 S 760,250 920,270',
+  ];
 
   return (
     <svg
@@ -101,7 +101,11 @@ export function HeroSvg() {
         </linearGradient>
         <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="hsl(200, 70%, 60%)" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="hsl(260, 60%, 55%)" stopOpacity="0.1" />
+          <stop
+            offset="100%"
+            stopColor="hsl(260, 60%, 55%)"
+            stopOpacity="0.1"
+          />
         </linearGradient>
         <radialGradient id="nodeGlow" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="hsl(230, 80%, 68%)" stopOpacity="0.3" />
@@ -147,7 +151,12 @@ export function HeroSvg() {
             opacity="0"
             filter="url(#glow)"
           >
-            <animateMotion path={d} dur={`${5 + i * 1.5}s`} repeatCount="indefinite" begin={`${i * 0.8}s`} />
+            <animateMotion
+              path={d}
+              dur={`${5 + i * 1.5}s`}
+              repeatCount="indefinite"
+              begin={`${i * 0.8}s`}
+            />
             <animate
               attributeName="opacity"
               values="0;0.8;0.8;0"
@@ -185,7 +194,14 @@ export function HeroSvg() {
 
       {/* Soft glow spots */}
       {[nodes[6], nodes[14], nodes[8]].map((n, i) => (
-        <circle key={`glow-${i}`} cx={n.x} cy={n.y} r="30" fill="url(#nodeGlow)" opacity="0.4">
+        <circle
+          key={`glow-${i}`}
+          cx={n.x}
+          cy={n.y}
+          r="30"
+          fill="url(#nodeGlow)"
+          opacity="0.4"
+        >
           <animate
             attributeName="opacity"
             values="0.2;0.5;0.2"
@@ -199,7 +215,14 @@ export function HeroSvg() {
       {/* Nodes */}
       <g filter="url(#glow)">
         {nodes.map((n, i) => (
-          <circle key={`n-${i}`} cx={n.x} cy={n.y} r={n.r} fill={`hsl(${n.hue}, 75%, 65%)`} opacity="0.6">
+          <circle
+            key={`n-${i}`}
+            cx={n.x}
+            cy={n.y}
+            r={n.r}
+            fill={`hsl(${n.hue}, 75%, 65%)`}
+            opacity="0.6"
+          >
             <animate
               attributeName="r"
               values={`${n.r};${n.r * 1.6};${n.r}`}
@@ -224,7 +247,7 @@ export function HeroSvg() {
         { x1: 600, y1: 5, x2: 720, y2: 50, dur: 0.9, delay: 8, hue: 260 },
         { x1: 800, y1: 20, x2: 900, y2: 80, dur: 1, delay: 14, hue: 200 },
         { x1: 350, y1: 15, x2: 500, y2: 70, dur: 1.1, delay: 20, hue: 240 },
-        { x1: 50, y1: 40, x2: 180, y2: 90, dur: 0.8, delay: 26, hue: 210 }
+        { x1: 50, y1: 40, x2: 180, y2: 90, dur: 0.8, delay: 26, hue: 210 },
       ].map((s, i) => (
         <line
           key={`shoot-${i}`}
@@ -264,7 +287,13 @@ export function HeroSvg() {
 
       {/* Extra traveling pulses along connections */}
       {kept.slice(0, 8).map(({ a, b, i, j }) => (
-        <circle key={`tp-${i}-${j}`} r="1" fill={`hsl(${a.hue}, 80%, 75%)`} opacity="0" filter="url(#glow)">
+        <circle
+          key={`tp-${i}-${j}`}
+          r="1"
+          fill={`hsl(${a.hue}, 80%, 75%)`}
+          opacity="0"
+          filter="url(#glow)"
+        >
           <animateMotion
             path={`M ${a.x},${a.y} L ${b.x},${b.y}`}
             dur={`${2 + (i % 3)}s`}
@@ -282,7 +311,12 @@ export function HeroSvg() {
       ))}
 
       {/* Morphing ambient shapes */}
-      <path fill="none" stroke="hsl(230, 60%, 55%)" strokeWidth="0.4" strokeOpacity="0.1">
+      <path
+        fill="none"
+        stroke="hsl(230, 60%, 55%)"
+        strokeWidth="0.4"
+        strokeOpacity="0.1"
+      >
         <animate
           attributeName="d"
           values="
@@ -294,7 +328,12 @@ export function HeroSvg() {
           repeatCount="indefinite"
         />
       </path>
-      <path fill="none" stroke="hsl(260, 50%, 50%)" strokeWidth="0.3" strokeOpacity="0.08">
+      <path
+        fill="none"
+        stroke="hsl(260, 50%, 50%)"
+        strokeWidth="0.3"
+        strokeOpacity="0.08"
+      >
         <animate
           attributeName="d"
           values="
@@ -316,22 +355,27 @@ export function HeroSvg() {
         @keyframes drawOn { to { stroke-dashoffset: 0; } }
       `}</style>
     </svg>
-  )
+  );
 }
 
 // Animated Evolution icon — DNA helix with rotating strands
 export function EvoIcon({ playing = false }) {
-  const svgRef = useRef(null)
+  const svgRef = useRef(null);
   useEffect(() => {
-    if (!svgRef.current) return
-    if (playing) svgRef.current.unpauseAnimations()
-    else svgRef.current.pauseAnimations()
-  }, [playing])
+    if (!svgRef.current) return;
+    if (playing) svgRef.current.unpauseAnimations();
+    else svgRef.current.pauseAnimations();
+  }, [playing]);
   useEffect(() => {
-    if (svgRef.current) svgRef.current.pauseAnimations()
-  }, [])
+    if (svgRef.current) svgRef.current.pauseAnimations();
+  }, []);
   return (
-    <svg ref={svgRef} viewBox="0 0 72 72" className="icon" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      ref={svgRef}
+      viewBox="0 0 72 72"
+      className="icon"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <defs>
         <linearGradient id="evoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="hsl(210, 80%, 70%)" />
@@ -412,31 +456,57 @@ export function EvoIcon({ playing = false }) {
       ))}
 
       {/* Center node */}
-      <circle cx="36" cy="40" r="4" fill="url(#evoGrad)" opacity="0.8" filter="url(#evoGlow)">
-        <animate attributeName="r" values="4;5.5;4" dur="3s" repeatCount="indefinite" />
+      <circle
+        cx="36"
+        cy="40"
+        r="4"
+        fill="url(#evoGrad)"
+        opacity="0.8"
+        filter="url(#evoGlow)"
+      >
+        <animate
+          attributeName="r"
+          values="4;5.5;4"
+          dur="3s"
+          repeatCount="indefinite"
+        />
       </circle>
 
       {/* Orbiting particle */}
-      <circle r="1.5" fill="hsl(170, 80%, 70%)" opacity="0.7" filter="url(#evoGlow)">
-        <animateMotion path="M 36,28 A 12,12 0 1 1 35.99,28" dur="3s" repeatCount="indefinite" />
+      <circle
+        r="1.5"
+        fill="hsl(170, 80%, 70%)"
+        opacity="0.7"
+        filter="url(#evoGlow)"
+      >
+        <animateMotion
+          path="M 36,28 A 12,12 0 1 1 35.99,28"
+          dur="3s"
+          repeatCount="indefinite"
+        />
       </circle>
     </svg>
-  )
+  );
 }
 
 // Animated Solar System icon — orbiting planets with SMIL
 export function SolarIcon({ playing = false }) {
-  const svgRef = useRef(null)
+  const svgRef = useRef(null);
   useEffect(() => {
-    if (!svgRef.current) return
-    if (playing) svgRef.current.unpauseAnimations()
-    else svgRef.current.pauseAnimations()
-  }, [playing])
+    if (!svgRef.current) return;
+    if (playing) svgRef.current.unpauseAnimations();
+    else svgRef.current.pauseAnimations();
+  }, [playing]);
   useEffect(() => {
-    if (svgRef.current) svgRef.current.pauseAnimations()
-  }, [])
+    if (svgRef.current) svgRef.current.pauseAnimations();
+  }, []);
   return (
-    <svg ref={svgRef} viewBox="0 0 72 72" className="icon" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      ref={svgRef}
+      viewBox="0 0 72 72"
+      className="icon"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <defs>
         <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="hsl(40, 95%, 65%)" />
@@ -497,16 +567,21 @@ export function SolarIcon({ playing = false }) {
 
       {/* Sun with pulsing glow */}
       <circle cx="36" cy="36" r="8" fill="url(#sunGrad)" filter="url(#sunGlow)">
-        <animate attributeName="r" values="8;9;8" dur="4s" repeatCount="indefinite" />
+        <animate
+          attributeName="r"
+          values="8;9;8"
+          dur="4s"
+          repeatCount="indefinite"
+        />
       </circle>
 
       {/* Corona rays */}
       {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => {
-        const rad = (angle * Math.PI) / 180
-        const x1 = 36 + Math.cos(rad) * 10
-        const y1 = 36 + Math.sin(rad) * 10
-        const x2 = 36 + Math.cos(rad) * 14
-        const y2 = 36 + Math.sin(rad) * 14
+        const rad = (angle * Math.PI) / 180;
+        const x1 = 36 + Math.cos(rad) * 10;
+        const y1 = 36 + Math.sin(rad) * 10;
+        const x2 = 36 + Math.cos(rad) * 14;
+        const y2 = 36 + Math.sin(rad) * 14;
         return (
           <line
             key={angle}
@@ -541,42 +616,70 @@ export function SolarIcon({ playing = false }) {
               begin={`${i * 0.25}s`}
             />
           </line>
-        )
+        );
       })}
 
       {/* Planet 1 — orbiting on ellipse */}
       <circle r="3.5" fill="hsl(210, 70%, 60%)">
-        <animateMotion path="M 58,36 A 22,10 0 1 1 57.99,36" dur="8s" repeatCount="indefinite" />
+        <animateMotion
+          path="M 58,36 A 22,10 0 1 1 57.99,36"
+          dur="8s"
+          repeatCount="indefinite"
+        />
       </circle>
 
       {/* Planet 2 — smaller, faster, tilted orbit */}
       <circle r="2" fill="hsl(170, 65%, 55%)">
-        <animateMotion path="M 36,12 A 14,24 0 1 1 35.99,12" dur="5s" repeatCount="indefinite" begin="1s" />
+        <animateMotion
+          path="M 36,12 A 14,24 0 1 1 35.99,12"
+          dur="5s"
+          repeatCount="indefinite"
+          begin="1s"
+        />
       </circle>
 
       {/* Moon orbiting planet 1 */}
       <circle r="1" fill="hsl(220, 60%, 70%)" opacity="0.7">
-        <animateMotion path="M 58,36 A 22,10 0 1 1 57.99,36" dur="8s" repeatCount="indefinite" />
-        <animate attributeName="cx" values="-5;5;-5" dur="1.5s" repeatCount="indefinite" />
-        <animate attributeName="cy" values="3;-3;3" dur="1.5s" repeatCount="indefinite" />
+        <animateMotion
+          path="M 58,36 A 22,10 0 1 1 57.99,36"
+          dur="8s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="cx"
+          values="-5;5;-5"
+          dur="1.5s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="cy"
+          values="3;-3;3"
+          dur="1.5s"
+          repeatCount="indefinite"
+        />
       </circle>
     </svg>
-  )
+  );
 }
 
 // Animated Radar icon — sweeping beam with range rings and blips
 export function RadarIcon({ playing = false }) {
-  const svgRef = useRef(null)
+  const svgRef = useRef(null);
   useEffect(() => {
-    if (!svgRef.current) return
-    if (playing) svgRef.current.unpauseAnimations()
-    else svgRef.current.pauseAnimations()
-  }, [playing])
+    if (!svgRef.current) return;
+    if (playing) svgRef.current.unpauseAnimations();
+    else svgRef.current.pauseAnimations();
+  }, [playing]);
   useEffect(() => {
-    if (svgRef.current) svgRef.current.pauseAnimations()
-  }, [])
+    if (svgRef.current) svgRef.current.pauseAnimations();
+  }, []);
   return (
-    <svg ref={svgRef} viewBox="0 0 72 72" className="icon" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      ref={svgRef}
+      viewBox="0 0 72 72"
+      className="icon"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <defs>
         <linearGradient id="radarSweepGrad" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="hsl(140, 80%, 55%)" stopOpacity="0.5" />
@@ -595,7 +698,7 @@ export function RadarIcon({ playing = false }) {
       </defs>
 
       {/* Range rings */}
-      {[10, 18, 26].map((r) => (
+      {[10, 18, 26].map(r => (
         <circle
           key={r}
           cx="36"
@@ -641,7 +744,11 @@ export function RadarIcon({ playing = false }) {
 
       {/* Sweep beam */}
       <g clipPath="url(#radarClip)">
-        <path d="M 36,36 L 36,8 A 28,28 0 0,1 60,22 Z" fill="url(#radarSweepGrad)" opacity="0.6">
+        <path
+          d="M 36,36 L 36,8 A 28,28 0 0,1 60,22 Z"
+          fill="url(#radarSweepGrad)"
+          opacity="0.6"
+        >
           <animateTransform
             attributeName="transform"
             type="rotate"
@@ -675,8 +782,19 @@ export function RadarIcon({ playing = false }) {
       </line>
 
       {/* Center dot */}
-      <circle cx="36" cy="36" r="2" fill="hsl(140, 80%, 55%)" filter="url(#radarGlow)">
-        <animate attributeName="r" values="2;2.5;2" dur="2s" repeatCount="indefinite" />
+      <circle
+        cx="36"
+        cy="36"
+        r="2"
+        fill="hsl(140, 80%, 55%)"
+        filter="url(#radarGlow)"
+      >
+        <animate
+          attributeName="r"
+          values="2;2.5;2"
+          dur="2s"
+          repeatCount="indefinite"
+        />
       </circle>
 
       {/* Blips that pulse */}
@@ -684,9 +802,16 @@ export function RadarIcon({ playing = false }) {
         { cx: 28, cy: 24, delay: '0s' },
         { cx: 48, cy: 30, delay: '0.8s' },
         { cx: 42, cy: 48, delay: '1.6s' },
-        { cx: 22, cy: 42, delay: '2.2s' }
+        { cx: 22, cy: 42, delay: '2.2s' },
       ].map((blip, i) => (
-        <circle key={i} cx={blip.cx} cy={blip.cy} r="1.5" fill="hsl(140, 80%, 60%)" filter="url(#radarGlow)">
+        <circle
+          key={i}
+          cx={blip.cx}
+          cy={blip.cy}
+          r="1.5"
+          fill="hsl(140, 80%, 60%)"
+          filter="url(#radarGlow)"
+        >
           <animate
             attributeName="opacity"
             values="0;1;0.8;0"
@@ -704,7 +829,7 @@ export function RadarIcon({ playing = false }) {
         </circle>
       ))}
     </svg>
-  )
+  );
 }
 
 // Animated section divider — a flowing wave with draw-on
@@ -737,8 +862,17 @@ export function WaveDivider() {
 
       {/* Traveling spark */}
       <circle r="2" fill="hsl(230, 90%, 75%)" opacity="0">
-        <animateMotion path="M 0,12 C 100,4 150,20 300,12 S 500,4 600,12" dur="4s" repeatCount="indefinite" />
-        <animate attributeName="opacity" values="0;0.8;0.8;0" dur="4s" repeatCount="indefinite" />
+        <animateMotion
+          path="M 0,12 C 100,4 150,20 300,12 S 500,4 600,12"
+          dur="4s"
+          repeatCount="indefinite"
+        />
+        <animate
+          attributeName="opacity"
+          values="0;0.8;0.8;0"
+          dur="4s"
+          repeatCount="indefinite"
+        />
       </circle>
 
       <style>{`
@@ -752,15 +886,15 @@ export function WaveDivider() {
         }
       `}</style>
     </svg>
-  )
+  );
 }
 
 // Living background — floating blobs, pulsing orbs, blinking lights, all blurred
 export function FloatingParticles() {
-  const [isMobile, setIsMobile] = useState(false)
+  const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    setIsMobile(window.innerWidth < 640)
-  }, [])
+    setIsMobile(window.innerWidth < 640);
+  }, []);
 
   // Floating blurred blobs that drift slowly
   const blobs = [
@@ -776,7 +910,7 @@ export function FloatingParticles() {
       dx: 40,
       dy: 30,
       opacity: 0.12,
-      delay: 0
+      delay: 0,
     },
     {
       x: 70,
@@ -790,7 +924,7 @@ export function FloatingParticles() {
       dx: -30,
       dy: 45,
       opacity: 0.1,
-      delay: 2
+      delay: 2,
     },
     {
       x: 85,
@@ -804,7 +938,7 @@ export function FloatingParticles() {
       dx: -50,
       dy: -25,
       opacity: 0.1,
-      delay: 5
+      delay: 5,
     },
     {
       x: 30,
@@ -818,7 +952,7 @@ export function FloatingParticles() {
       dx: 35,
       dy: -40,
       opacity: 0.08,
-      delay: 3
+      delay: 3,
     },
     {
       x: 55,
@@ -832,7 +966,7 @@ export function FloatingParticles() {
       dx: -25,
       dy: 35,
       opacity: 0.09,
-      delay: 7
+      delay: 7,
     },
     {
       x: 5,
@@ -846,7 +980,7 @@ export function FloatingParticles() {
       dx: 30,
       dy: 20,
       opacity: 0.1,
-      delay: 1
+      delay: 1,
     },
     {
       x: 45,
@@ -860,7 +994,7 @@ export function FloatingParticles() {
       dx: -20,
       dy: -30,
       opacity: 0.07,
-      delay: 4
+      delay: 4,
     },
     {
       x: 90,
@@ -874,9 +1008,9 @@ export function FloatingParticles() {
       dx: -35,
       dy: 20,
       opacity: 0.08,
-      delay: 6
-    }
-  ]
+      delay: 6,
+    },
+  ];
 
   // Pulsing orbs that breathe in and out
   const pulses = [
@@ -889,14 +1023,14 @@ export function FloatingParticles() {
     { x: 90, y: 25, size: 55, hue: 240, dur: 3.8, delay: 4, maxOp: 0.12 },
     { x: 75, y: 90, size: 75, hue: 270, dur: 7, delay: 2, maxOp: 0.09 },
     { x: 40, y: 10, size: 45, hue: 220, dur: 4.2, delay: 0.5, maxOp: 0.13 },
-    { x: 55, y: 60, size: 85, hue: 250, dur: 5.8, delay: 3.5, maxOp: 0.1 }
-  ]
+    { x: 55, y: 60, size: 85, hue: 250, dur: 5.8, delay: 3.5, maxOp: 0.1 },
+  ];
 
   // Blinking dim lights — tiny points that flicker
   const blinks = Array.from({ length: 30 }, (_, i) => {
-    const phi = 1.618033988749
-    const angle = i * phi * Math.PI * 2
-    const radius = Math.sqrt(i / 30)
+    const phi = 1.618033988749;
+    const angle = i * phi * Math.PI * 2;
+    const radius = Math.sqrt(i / 30);
     return {
       x: 50 + Math.cos(angle) * radius * 48,
       y: 50 + Math.sin(angle) * radius * 48,
@@ -904,13 +1038,13 @@ export function FloatingParticles() {
       hue: 200 + (i % 6) * 20,
       dur: 2 + (i % 5) * 1.5,
       delay: (i * 0.43) % 6,
-      maxOp: 0.08 + (i % 3) * 0.06
-    }
-  })
+      maxOp: 0.08 + (i % 3) * 0.06,
+    };
+  });
 
-  const visibleBlobs = isMobile ? blobs.slice(0, 3) : blobs
-  const visiblePulses = isMobile ? pulses.slice(0, 4) : pulses
-  const visibleBlinks = isMobile ? blinks.slice(0, 10) : blinks
+  const visibleBlobs = isMobile ? blobs.slice(0, 3) : blobs;
+  const visiblePulses = isMobile ? pulses.slice(0, 4) : pulses;
+  const visibleBlinks = isMobile ? blinks.slice(0, 10) : blinks;
 
   return (
     <div className="fp-alive" aria-hidden="true">
@@ -929,7 +1063,7 @@ export function FloatingParticles() {
             '--bdur': `${b.dur}s`,
             '--bdx': `${b.dx}px`,
             '--bdy': `${b.dy}px`,
-            '--bdelay': `${b.delay}s`
+            '--bdelay': `${b.delay}s`,
           }}
         />
       ))}
@@ -946,7 +1080,7 @@ export function FloatingParticles() {
             '--pcolor': `hsl(${p.hue}, 50%, 40%)`,
             '--pdur': `${p.dur}s`,
             '--pdelay': `${p.delay}s`,
-            '--pmaxop': p.maxOp
+            '--pmaxop': p.maxOp,
           }}
         />
       ))}
@@ -963,10 +1097,10 @@ export function FloatingParticles() {
             '--lcolor': `hsl(${b.hue}, 40%, 55%)`,
             '--ldur': `${b.dur}s`,
             '--ldelay': `${b.delay}s`,
-            '--lmaxop': b.maxOp
+            '--lmaxop': b.maxOp,
           }}
         />
       ))}
     </div>
-  )
+  );
 }
